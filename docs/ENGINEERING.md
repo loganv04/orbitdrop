@@ -36,7 +36,7 @@ The crop canvas fits the source image into the available preview area. The displ
 
 PNG, WEBP, and TIFF can retain the alpha channel in this app. Formats exported as RGB are composited onto white. EXIF orientation is applied before export, and a fresh image object removes inherited metadata. This also means original ICC color profiles and other metadata are not carried over.
 
-## Tests worth explaining
+## Test coverage
 
 - Actual exports are reopened to check dimensions, transparency, and page count.
 - Multiple conversions into the source folder verify that the original bytes remain unchanged.
@@ -54,9 +54,3 @@ PNG, WEBP, and TIFF can retain the alpha channel in this app. Formats exported a
 - **History:** keep a local JSON or SQLite log of conversion status without retaining file contents.
 - **OCR:** add an explicitly optional OCR engine and make scanned-document handling a separate operation.
 - **Native desktop overlay:** implement platform-specific Finder/Explorer drag integration. This is a separate feature from the current in-window Qt drop target.
-
-## Interview explanation
-
-“OrbitDrop converts files locally through a desktop UI. I separated the conversion engine from the interface so the engine could be tested without opening a window. The app uses a worker thread for document processing, a lock around PDFium, and exclusive file creation to prevent overwrites. The biggest limitation is that PDF-to-Word extracts text rather than reconstructing the original layout.”
-
-Use this explanation after you have reviewed the relevant code and tested it yourself. Be ready to walk through `convert()`, `exclusive_output()`, and the radial hit-testing method rather than just listing the libraries.
