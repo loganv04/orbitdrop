@@ -1,0 +1,12 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+exports/
+build/
+dist/
+*.egg-info/
+.coverage
+.pytest_cache/
